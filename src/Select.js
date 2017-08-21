@@ -168,8 +168,10 @@ class Select extends Component {
 	 * @protected
 	 */
 	selectItem_(itemElement) {
-		this.selectedIndex = this.findItemIndex_(itemElement);
-		this.expanded_ = false;
+		if (!this.disableOptions) {
+			this.selectedIndex = this.findItemIndex_(itemElement);
+			this.expanded_ = false;
+		}
 	}
 
 	/**
@@ -230,6 +232,15 @@ Select.STATE = {
 	 */
 	disabled: {
 		validator: core.isBoolean,
+		value: false
+	},
+
+	/**
+	 * Disallow selection of dropdown options.
+	 * @type {boolean}
+	 * @default false
+	 */
+	disableOptions: {
 		value: false
 	},
 
